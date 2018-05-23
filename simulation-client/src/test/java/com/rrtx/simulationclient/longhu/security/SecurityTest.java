@@ -2,6 +2,7 @@ package com.rrtx.simulationclient.longhu.security;
 
 import com.alibaba.fastjson.JSON;
 import com.rrtx.simulationclient.service.IHttpClient;
+import com.rrtx.simulationclient.util.SHA256;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class SecurityTest {
         dataMap.put("name", "lijing");
         dataMap.put("telNo", "17701084082");
         requestMap.put("data", dataMap);
-        requestMap.put("mac", "123456");
+        requestMap.put("mac", SHA256.getSHA256Str(JSON.toJSONString(dataMap)));
 
         String result = (String) httpClient.post(url+ "securityTest", "formData=" + JSON.toJSONString(requestMap), charset);
     }
