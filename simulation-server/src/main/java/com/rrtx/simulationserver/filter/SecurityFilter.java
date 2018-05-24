@@ -26,6 +26,7 @@ public class SecurityFilter implements Filter {
             System.out.println("mac validate failed!");
             return ;
         }
+
         System.out.println("data: " + data);
         filterChain.doFilter(servletRequest, servletResponse);
     }
